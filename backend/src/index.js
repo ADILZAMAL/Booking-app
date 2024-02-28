@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/users.js");
 const authRoutes = require("./routes/auth.js");
 const cookieParser = require("cookie-parser");
+const path = require('path');
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING);
@@ -18,6 +19,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(express.static(path.join(__dirname, "../../frontend/dist")))
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
