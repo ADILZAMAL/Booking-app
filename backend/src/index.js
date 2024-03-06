@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv").config({path: process.env.DOTENV_CONFIG_PATH});
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/users.js");
+const myHotelRooutes = require("./routes/my-hotels.js")
 const authRoutes = require("./routes/auth.js");
 const cookieParser = require("cookie-parser");
 const path = require('path');
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, "../../frontend/dist")))
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/my-hotels", myHotelRooutes);
 
 app.listen(7000, () => {
   console.log("Server running on localhost:7000");
