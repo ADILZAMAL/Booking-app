@@ -6,7 +6,13 @@ const userRoutes = require("./routes/users.js");
 const authRoutes = require("./routes/auth.js");
 const cookieParser = require("cookie-parser");
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING);
 const app = express();
